@@ -3,7 +3,6 @@
 
 **A complete reverse-engineering of Claude Code's architecture — built from a minimal agent loop to a 23-session production system.**
 
-[![Read the Full Blog](https://img.shields.io/badge/Medium-Read%20Full%20Blog-black?style=for-the-badge&logo=medium)](https://medium.com/@fareedkhandev/building-claude-code-using-harness-engineering-d2e8c0da85f0)
 [![Python](https://img.shields.io/badge/Python-3.10%2B-blue?style=for-the-badge&logo=python)](https://python.org)
 [![Anthropic](https://img.shields.io/badge/Anthropic-Claude-orange?style=for-the-badge)](https://anthropic.com)
 [![License](https://img.shields.io/badge/License-MIT-green?style=for-the-badge)](LICENSE)
@@ -95,7 +94,7 @@ claude_code_push_this/
 
 ```bash
 # 1. Clone the repository
-git clone https://github.com/FareedKhan-dev/claude-code-from-scratch.git
+git clone https://github.com/saksham1702/claude-code-from-scratch.git
 cd claude-code-from-scratch
 
 # 2. Create virtual environment
@@ -423,14 +422,3 @@ pip install -r requirements.txt
 | `redis>=5.0.0` | s22 | Redis pub/sub (falls back to Queue) |
 | `litellm[proxy]>=1.50.0` | Optional | Non-Anthropic model support |
 
----
-
-## Read the Full Blog
-
-Every phase in this repository is explained in depth in the companion blog post — with theory, architecture diagrams, full code walkthroughs, and real execution outputs showing the agent working on actual tasks.
-
-<div align="center">
-
-[![Read on Medium](https://img.shields.io/badge/Medium-Building%20Claude%20Code%20Using%20Harness%20Engineering-black?style=for-the-badge&logo=medium&logoColor=white)](https://medium.com/@fareedkhandev/building-claude-code-using-harness-engineering-d2e8c0da85f0)
-
-</div>
