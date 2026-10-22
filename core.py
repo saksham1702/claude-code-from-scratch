@@ -1,7 +1,7 @@
 """
 agents/core.py: Core components for the AI agent sessions.
 
-This module provides the shared foundation for all agent sessions (s01–s23).
+This module provides the shared foundation for all agent sessions (s01–s25).
 It centralizes all core functionalities to ensure that no logic is duplicated
 across session-specific files. Each session file imports from this module and
 only contains the new mechanism being introduced in that session.

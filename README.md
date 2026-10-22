@@ -1,7 +1,7 @@
 <div align="center">
 <h1>Building Claude Code Using Harness Engineering</h1>
 
-**A complete reverse-engineering of Claude Code's architecture — built from a minimal agent loop to a 23-session production system.**
+**A complete reverse-engineering of Claude Code's architecture — built from a minimal agent loop to a 25-session production system.**
 
 [![Python](https://img.shields.io/badge/Python-3.10%2B-blue?style=for-the-badge&logo=python)](https://python.org)
 [![Anthropic](https://img.shields.io/badge/Anthropic-Claude-orange?style=for-the-badge)](https://anthropic.com)
@@ -72,6 +72,8 @@ claude_code_push_this/
 │
 ├── s22_production_mailbox.py        # Redis pub/sub production mailboxes
 ├── s23_worktree_advanced.py         # Advanced worktree lifecycle management
+├── s24_parallel_subagents.py        # Fan-out fan-in parallel subagent exploration
+├── s25_token_cost_ledger.py         # Fine-grained token accounting and cost attribution
 │
 ├── config/
 │   ├── permissions.yaml             # YAML permission rules for s15, s16
@@ -373,6 +375,8 @@ Replacing teaching implementations with production-grade alternatives — Redis 
 |------|-----------|---------|
 | `s22_production_mailbox.py` | Redis pub/sub channels | Replaces s09 JSONL mailboxes |
 | `s23_worktree_advanced.py` | Full lifecycle management | Replaces s12 basic worktrees |
+| `s24_parallel_subagents.py` | Fan-out fan-in subagent exploration | Extends s04 with concurrent asyncio.gather |
+| `s25_token_cost_ledger.py` | Token accounting & cost attribution | Granular per-turn spend, cache ROI, & tool ledger |
 
 ```bash
 # Start Redis first
@@ -380,6 +384,8 @@ docker run -p 6379:6379 redis
 
 python s22_production_mailbox.py      # Redis mailboxes (falls back to Queue)
 python s23_worktree_advanced.py       # Advanced worktree management
+python s24_parallel_subagents.py      # Concurrent subagent exploration
+python s25_token_cost_ledger.py       # Fine-grained token accounting and cost tracking
 ```
 
 **`s23` handles every edge case:**
@@ -398,11 +404,9 @@ python s23_worktree_advanced.py       # Advanced worktree management
 
 So far we have built a complete Claude Code harness from a minimal agent loop all the way to a production-grade multi-agent system with streaming, parallel execution, prompt caching, Redis mailboxes, permission governance, session persistence, and an official MCP runtime. There is still room to push it further.
 
-1. **Parallel Subagent Spawning** — refactor `spawn_subagent` to use `asyncio.gather` and dispatch three explore subagents simultaneously, exactly how Claude Code does it internally
-2. **Vector Memory Store** — replace the flat markdown memory file with ChromaDB for semantic retrieval — relevant memories instead of full summary injection every session
-3. **Fine-Grained Token Accounting** — add a cost ledger that logs spend per task and per tool type to identify which operations are most expensive
-4. **Webhook-Based Event Bus** — extend the event bus to forward events to external HTTP endpoints for Slack, Datadog, or PagerDuty integration without modifying the loop
-5. **LLM-as-a-Judge Evaluation** — add an evaluation layer that scores agent outputs on accuracy, tool efficiency, and plan adherence to turn the repo into a benchmarkable system
+1. **Vector Memory Store** — replace the flat markdown memory file with ChromaDB for semantic retrieval — relevant memories instead of full summary injection every session
+2. **Webhook-Based Event Bus** — extend the event bus to forward events to external HTTP endpoints for Slack, Datadog, or PagerDuty integration without modifying the loop
+3. **LLM-as-a-Judge Evaluation** — add an evaluation layer that scores agent outputs on accuracy, tool efficiency, and plan adherence to turn the repo into a benchmarkable system
 
 ---
 
